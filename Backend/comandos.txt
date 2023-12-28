@@ -6,3 +6,11 @@ app.listen(3000,( err ) =>{
 necesario tener instalado nodemon
 npm i -g nodemon
 esto permite que al hacer un cambio en el lado del "server", se muestre enseguida
+const publicPath = path.resolve(__dirname, "public"); //obtener el path donde esta el server
+
+app.use(express.static(publicPath)); //hacer que cargue la pagina deseada
+npm i dotenv --instalar dotenv
+
+npm run start:dev --> definido en package.json. Ejecuta lo indicado
+
+Poder usar sockets.io

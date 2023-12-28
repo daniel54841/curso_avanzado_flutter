@@ -47,20 +47,39 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ListTile _bandTile(Band band) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: Colors.blue[100],
-        child: Text(
-          band.name!.substring(0, 2),
+  Widget _bandTile(Band band) {
+    return Dismissible(
+      key: Key(band.id!),
+      direction: DismissDirection.startToEnd, //betar lado para eliminar
+      onDismissed: (direction) {
+        //TODO: llamar borrado en back
+      },
+
+      background: Container(
+        color: Colors.red,
+        padding: const EdgeInsets.only(left: 8.0),
+        child: const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Delete Band",
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
-      title: Text(band.name!),
-      trailing: Text(
-        "${band.votes}",
-        style: const TextStyle(fontSize: 20),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.blue[100],
+          child: Text(
+            band.name!.substring(0, 2),
+          ),
+        ),
+        title: Text(band.name!),
+        trailing: Text(
+          "${band.votes}",
+          style: const TextStyle(fontSize: 20),
+        ),
+        onTap: () {},
       ),
-      onTap: () {},
     );
   }
 
@@ -95,17 +114,6 @@ class _HomePageState extends State<HomePage> {
       this.bands.add(new Band(id: DateTime.now().toString(), name: name, votes: 0));
       setState(() {});
     }
-    /* if (name.isEmpty) {
-      setState(() {
-        bands.add(
-          Band(
-            id: DateTime.now().toString(),
-            name: name,
-            votes: 0,
-          ),
-        );
-      });
-    }*/
     Navigator.pop(context); //cerrar el dialogo
   }
 }

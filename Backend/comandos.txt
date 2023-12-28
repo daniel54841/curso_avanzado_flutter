@@ -1,0 +1,8 @@
+npm i express --> instalar express en la carpeta donde se este
+app.listen(3000,( err ) =>{
+    if(err) throw new Error(err);
+    console.log('Servidor corriendo en puerto',3000);
+}); --> permite escuchar en el puerto indicado
+necesario tener instalado nodemon
+npm i -g nodemon
+esto permite que al hacer un cambio en el lado del "server", se muestre enseguida

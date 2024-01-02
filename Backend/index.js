@@ -6,15 +6,9 @@ require('dotenv').config(); //definir las variables de entorno
 
 //crear servidor sockets
 const server = require("http").createServer(app); //usar la configuracion de la app
-const io = require("socket.io")(server); //informacion que entra y sale
+module.exports.io = require("socket.io")(server); //informacion que entra y sale
 
-// mensajes de sockets
-io.on("connection",client => {
-    console.log("Cliente conectado");
-    client.on("disconnect",() => {
-        console.log("Cliente desconectado");
-    })
-});
+require("./sockets/socket");
 
 const { execPath } = require('process');
 

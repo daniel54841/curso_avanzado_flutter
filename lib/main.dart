@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         initialRoute: 'home',
         routes: {
-          'home': (_) => const HomePage(),
+          'home': (_) => HomePage(),
           "status": (_) => const StatusPage(),
         },
       ),

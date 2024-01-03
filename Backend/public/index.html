@@ -21,10 +21,17 @@
             console.log("Mensaje optenido: ",payload);
         });
 
-        socket.emit("mensaje", { nombre: "Daniel"});
+       // socket.emit("mensaje", { nombre: "Daniel"});
+        
         socket.on("mensaje",function( payload ){
             console.log("Escuchando:  ",payload);
         });
+
+        socket.on("active-bands", function(payload){
+            console.clear();
+            console.table("Bandas almacenadas: ",payload);
+        });
+
 
     </script>
 </body>

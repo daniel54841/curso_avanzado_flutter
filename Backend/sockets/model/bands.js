@@ -1,3 +1,5 @@
+const Band = require("./band");
+
 
 //clase de manejo de las clases
 class Bands{

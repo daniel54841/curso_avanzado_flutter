@@ -22,6 +22,22 @@ class _HomePageState extends State<HomePage> {
     Band(id: "5", name: "Queen", votes: 4),
     Band(id: "6", name: "Linking Park", votes: 6),
   ];
+  @override
+  void initState() {
+    final socketService = Provider.of<SocketService>(context, listen: false);
+    socketService.socket.on("active-bands", (payload) {
+      bands = (payload as List).map((band) => Band.fromMap(band)).toList();
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    final socketService = Provider.of<SocketService>(context, listen: false);
+    socketService.socket.off("active-bands");
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +81,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _bandTile(Band band) {
+    final socketService = Provider.of<SocketService>(context, listen: false);
     return Dismissible(
       key: Key(band.id!),
       direction: DismissDirection.startToEnd, //betar lado para eliminar
@@ -95,7 +112,9 @@ class _HomePageState extends State<HomePage> {
           "${band.votes}",
           style: const TextStyle(fontSize: 20),
         ),
-        onTap: () {},
+        onTap: () {
+          socketService.socket.emit("vote-band", {"id": band.id});
+        },
       ),
     );
   }

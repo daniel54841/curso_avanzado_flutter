@@ -16,7 +16,10 @@
         socket.on("disconnect",function(){
             console.log("Desconexion del servidor");
         });   
-
+        
+        socket.on("emitir-mensaje",function(payload){
+            console.log("Mensaje optenido: ",payload);
+        });
 
         socket.emit("mensaje", { nombre: "Daniel"});
         socket.on("mensaje",function( payload ){

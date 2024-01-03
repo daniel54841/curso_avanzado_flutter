@@ -13,23 +13,25 @@ class SocketService with ChangeNotifier {
   SocketService() {
     _initConfig();
   }
+  late Socket _socket;
 
-  get serverStatus => _status;
+  ServerStatus get serverStatus => _status;
+  Socket get socket => _socket;
 
   void _initConfig() {
-    Socket socket = io("http://192.168.1.35:3000", OptionBuilder().setTransports(["websocket"]).enableAutoConnect().build());
-    socket.onConnect((_) {
+    _socket = io("http://192.168.1.35:3000", OptionBuilder().setTransports(["websocket"]).enableAutoConnect().build());
+    _socket.onConnect((_) {
       print('connect');
       _status = ServerStatus.online;
       notifyListeners();
     });
-    socket.onDisconnect((_) {
+    _socket.onDisconnect((_) {
       print('disconnect');
       _status = ServerStatus.offline;
       notifyListeners();
     });
 
-    socket.on("nuevo_mensaje", (payload) {
+    _socket.on("nuevo_mensaje", (payload) {
       print("nuevo_mensaje: $payload");
     });
   }

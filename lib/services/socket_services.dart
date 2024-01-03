@@ -9,23 +9,28 @@ enum ServerStatus {
 
 //para notificar el provider --> ChangeNotifier
 class SocketService with ChangeNotifier {
-  final ServerStatus _status = ServerStatus.connecting;
+  ServerStatus _status = ServerStatus.connecting;
   SocketService() {
     _initConfig();
   }
 
+  get serverStatus => _status;
+
   void _initConfig() {
-    /* io.Socket socket = io.io('http://192.168.1.35:3000/', {
-      "transport": ["websocket"],
-      "autoConnect": true,
-    });
+    Socket socket = io("http://192.168.1.35:3000", OptionBuilder().setTransports(["websocket"]).enableAutoConnect().build());
     socket.onConnect((_) {
       print('connect');
+      _status = ServerStatus.online;
+      notifyListeners();
+    });
+    socket.onDisconnect((_) {
+      print('disconnect');
+      _status = ServerStatus.offline;
+      notifyListeners();
     });
 
-    socket.onDisconnect((_) => print('disconnect'));*/
-    Socket socket = io("http://localhost:3000", OptionBuilder().setTransports(["websocket"]).enableAutoConnect().build());
-    socket.onConnect((_) => print('connect'));
-    socket.onDisconnect((_) => print('disconnect'));
+    socket.on("nuevo_mensaje", (payload) {
+      print("nuevo_mensaje: $payload");
+    });
   }
 }

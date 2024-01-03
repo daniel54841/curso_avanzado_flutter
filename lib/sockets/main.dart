@@ -1,6 +1,6 @@
-import 'package:curso_avanzado_flutter/pages/home.dart';
-import 'package:curso_avanzado_flutter/pages/status.dart';
-import 'package:curso_avanzado_flutter/services/socket_services.dart';
+import 'package:curso_avanzado_flutter/sockets/pages/home.dart';
+import 'package:curso_avanzado_flutter/sockets/pages/status.dart';
+import 'package:curso_avanzado_flutter/sockets/services/socket_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

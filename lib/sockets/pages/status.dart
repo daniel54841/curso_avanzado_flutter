@@ -1,6 +1,7 @@
-import 'package:curso_avanzado_flutter/services/socket_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../services/socket_services.dart';
 
 //Tener la comunicacion de los sockets services
 

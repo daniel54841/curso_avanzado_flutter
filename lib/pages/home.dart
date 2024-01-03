@@ -20,8 +20,8 @@ class _HomePageState extends State<HomePage> {
     final socketService = Provider.of<SocketService>(context, listen: false);
     socketService.socket.on("active-bands", (payload) {
       bands = (payload as List).map((band) => Band.fromMap(band)).toList();
-      setState(() {});
     });
+    setState(() {});
     super.initState();
   }
 
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       key: Key(band.id!),
       direction: DismissDirection.startToEnd, //betar lado para eliminar
       onDismissed: (direction) {
-        //TODO: llamar borrado en back
+        deleteBand(band);
       },
 
       background: Container(
@@ -112,6 +112,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  deleteBand(Band band) {
+    final socketService = Provider.of<SocketService>(context, listen: false);
+    socketService.socket.emit('delete-band', {'name': band.name, "votes": band.votes, "id": band.id});
+  }
+
   addNewBand() {
     final textController = TextEditingController();
 
@@ -140,8 +145,8 @@ class _HomePageState extends State<HomePage> {
 
   void addBandToList(String name) {
     if (name.length > 1) {
-      this.bands.add(new Band(id: DateTime.now().toString(), name: name, votes: 0));
-      setState(() {});
+      final socketService = Provider.of<SocketService>(context, listen: false);
+      socketService.socket.emit('add-band', {'name': name});
     }
     Navigator.pop(context); //cerrar el dialogo
   }

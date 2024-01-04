@@ -1,4 +1,4 @@
-import 'package:curso_avanzado_flutter/chat/page/login_page.dart';
+import 'package:curso_avanzado_flutter/chat/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -10,11 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      initialRoute: 'login,
-      routes: {
-        'login': (_) => const LoginPage(),
-      },
+      title: 'Chat App',
+      initialRoute: 'loading',
+      routes: appRoutes,
     );
   }
 }

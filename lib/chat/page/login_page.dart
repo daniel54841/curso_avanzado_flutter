@@ -10,27 +10,36 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffF2F2F2),
-        body: SafeArea(
-          //pone espacio en la parte del notch en el dispositivo
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(), //rebote al bajar al tope
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Logo(),
-                  Forms(),
-                  Labels(),
-                  Text("Terminos y condiciones de uso",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                      )),
-                ],
-              ),
+      backgroundColor: const Color(0xffF2F2F2),
+      body: SafeArea(
+        //pone espacio en la parte del notch en el dispositivo
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(), //rebote al bajar al tope
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Logo(
+                  title: "Messenger",
+                ),
+                Forms(
+                  isLogin: true,
+                ),
+                Labels(
+                  ruta: "register",
+                ),
+                Text(
+                  "Terminos y condiciones de uso",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w100,
+                  ),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

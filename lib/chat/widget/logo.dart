@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({Key? key}) : super(key: key);
+  final String title;
+  const Logo({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +11,9 @@ class Logo extends StatelessWidget {
         margin: const EdgeInsets.only(
           top: 50,
         ),
-        child: const Column(
+        child: Column(
           children: [
-            Image(
+            const Image(
               image: AssetImage("assets/tag-logo.png"),
               width: 170,
             ),
@@ -20,7 +21,7 @@ class Logo extends StatelessWidget {
               height: 20,
             ),
             Text(
-              "Messenger",
+              title,
               style: TextStyle(fontSize: 30),
             ),
           ],

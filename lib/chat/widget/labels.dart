@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Labels extends StatelessWidget {
-  const Labels({Key? key}) : super(key: key);
+  final String ruta;
+  const Labels({
+    Key? key,
+    required this.ruta,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,20 +13,31 @@ class Labels extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            const Text(
-              "¿No tienes cuenta?",
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 15,
-                fontWeight: FontWeight.w300,
+            Visibility(
+              visible: ruta != "login",
+              child: const Text(
+                "¿No tienes cuenta?",
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              "Crea una ahora!",
-              style: TextStyle(color: Colors.blue[600]),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  ruta,
+                );
+              },
+              child: Text(
+                ruta != "login" ? "Crea una ahora!" : "Iniciar sesion",
+                style: TextStyle(color: Colors.blue[600]),
+              ),
             )
           ],
         ),

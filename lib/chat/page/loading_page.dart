@@ -7,8 +7,8 @@ class LoadingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Text("Hello Word"),
+      body: const Center(
+        child: Text("Loading Page.."),
       ),
     );
   }

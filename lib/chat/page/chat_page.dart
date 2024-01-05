@@ -1,8 +1,27 @@
 import 'package:curso_avanzado_flutter/chat/widget/chat_textfile.dart';
 import 'package:flutter/material.dart';
 
-class ChatPage extends StatelessWidget {
-  const ChatPage({Key? key}) : super(key: key);
+import '../widget/chat_message.dart';
+
+class ChatPage extends StatefulWidget {
+  ChatPage({Key? key}) : super(key: key);
+
+  static final List<ChatMessage> messages = [];
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
+  addMessage(String message) {
+    ChatMessage messageT = ChatMessage(
+      texto: message,
+      uid: "123",
+      animationController: AnimationController(vsync: this, duration: Duration(milliseconds: 2000)),
+    );
+    ChatPage.messages.insert(0, messageT);
+    messageT.animationController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +56,10 @@ class ChatPage extends StatelessWidget {
           children: [
             Flexible(
               child: ListView.builder(
+                itemCount: ChatPage._messages.length,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Text("$index");
+                  return ChatPage._messages[index];
                 },
                 reverse: true,
               ),

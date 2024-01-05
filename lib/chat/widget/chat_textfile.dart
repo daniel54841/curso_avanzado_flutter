@@ -2,8 +2,10 @@ import 'package:curso_avanzado_flutter/chat/widget/chat_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class ChatTextFile extends StatefulWidget {
-  ChatTextFile({Key? key}) : super(key: key);
   bool isWriting = false;
+
+  ChatTextFile({Key? key}) : super(key: key);
+
   @override
   State<ChatTextFile> createState() => _ChatTextFileState();
 }
@@ -40,7 +42,10 @@ class _ChatTextFileState extends State<ChatTextFile> {
             focusNode: _focusNode,
           ),
         ),
-        ChatIconButton(isWriting: widget.isWriting)
+        ChatIconButton(
+          isWriting: widget.isWriting,
+          textChatWrite: _textCtrl.text,
+        )
       ],
     );
   }

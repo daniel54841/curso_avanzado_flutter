@@ -1,10 +1,13 @@
+import 'package:curso_avanzado_flutter/chat/page/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class ChatIconButton extends StatelessWidget {
   final bool isWriting;
+  final String textChatWrite;
   const ChatIconButton({
     Key? key,
     required this.isWriting,
+    required this.textChatWrite,
   }) : super(key: key);
 
   @override
@@ -19,7 +22,11 @@ class ChatIconButton extends StatelessWidget {
           icon: const Icon(
             Icons.send_rounded,
           ),
-          onPressed: isWriting ? () {} : null,
+          onPressed: isWriting
+              ? () {
+                  ChatPage.addMessage(textChatWrite);
+                }
+              : null,
         ),
       ),
     );

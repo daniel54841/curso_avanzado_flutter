@@ -24,6 +24,15 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    // TODO: off del socket
+    for (ChatMessage message in ChatPage.messages) {
+      message.animationController.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -56,10 +65,10 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
           children: [
             Flexible(
               child: ListView.builder(
-                itemCount: ChatPage._messages.length,
+                itemCount: ChatPage.messages.length,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return ChatPage._messages[index];
+                  return ChatPage.messages[index];
                 },
                 reverse: true,
               ),

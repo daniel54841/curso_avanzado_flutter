@@ -1,4 +1,3 @@
-import 'package:curso_avanzado_flutter/chat/page/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class ChatIconButton extends StatelessWidget {
@@ -24,7 +23,7 @@ class ChatIconButton extends StatelessWidget {
           ),
           onPressed: isWriting
               ? () {
-                  ChatPage.addMessage(textChatWrite);
+                  debugPrint(""); /*ChatPage.addMessage(textChatWrite);*/
                 }
               : null,
         ),

@@ -1,9 +1,9 @@
+import 'package:curso_avanzado_flutter/chat/widget/chat_textfile.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  ChatPage({Key? key}) : super(key: key);
-  final TextEditingController _textCtrl = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  const ChatPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,29 +54,7 @@ class ChatPage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(
                   horizontal: 8.0,
                 ),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: TextField(
-                        controller: _textCtrl,
-                        onSubmitted: (_) {
-                          _textCtrl.clear();
-                          _focusNode.requestFocus();
-                        },
-                        onChanged: (value) {},
-                        decoration: const InputDecoration.collapsed(hintText: "Enviar mensaje"),
-                        focusNode: _focusNode,
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: IconButton(
-                        icon: const Icon(Icons.send_rounded),
-                        onPressed: () {},
-                      ),
-                    )
-                  ],
-                ),
+                child: ChatTextFile(),
               ),
             ),
           ],
